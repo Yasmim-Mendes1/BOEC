@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: black;
+      width: 100%;
+      height: 100%;
+    }
+
+    form {
+      width: 300px;
+      margin: 200px auto;
+      text-align: center;
+    }
+
+    input {
+      background-color: black;
+      display: block;
+      border-radius: 5px;
+      border-color: #820303;
+      margin: 10px auto;
+      width: 250px;
+      height: 30px;
+      color: darkred;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    input[type="text"]::placeholder,
+    input[type="password"]::placeholder {
+      background-color: black;
+      color: #820303;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    input[type="submit"] {
+      background-color: #820303;
+      color: white;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    h3 {
+      color: darkred;
+    }
+
+    #imagem-login {
+      display: none;
+      max-width: 100%;
+      height: auto;
+      margin: auto;
+    }
+
+    .hacker-code {
+      font-family: "Courier New", Courier, monospace;
+      color: purple;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      margin: 20px auto;
+      width: 90%;
+      position: relative;
+    }
+
+    .cursor {
+      display: inline-block;
+      background-color: purple;
+      width: 10px;
+      height: 1em;
+      vertical-align: bottom;
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="login-container">
+    <form id="login-form" onsubmit="logar(); return false;">
+      <h3>LOGIN</h3>
+      <input type="text" placeholder="Usuário" id="login">
+      <input type="password" placeholder="Senha" id="senha">
+      <input type="submit" value="ENTRAR">
+    </form>
+  </div>
+
+  <div id="codeContainer" class="hacker-code"></div>
+  <img id="imagem-login" src="calmaperereka.jpg">
+
+  <script>
+    function logar() {
+      var login = document.getElementById('login').value;
+      var senha = document.getElementById('senha').value;
+
+      if ((login === "Sophia" && senha === "RedFe4r") || (login === "Arthur" && senha === "Blood3d") || (login === "Elena" && senha === "Scarlet666")) {
+        document.getElementById('login-container').style.display = 'none';
+        exibirCodigoTemporizado(function() {
+          if (login === "Sophia") {
+            location.href = "sophia.html";
+          } else if (login === "Arthur") {
+            location.href = "arthur.html";
+          } else if (login === "Elena") {
+            location.href = "elena.html";
+          }
+        });
+      } 
+      else {
+        alert('Usuário ou senha incorretos');
+      }
+    }
+
+    function exibirCodigoTemporizado(callback) {
+      var codeContainer = document.getElementById('codeContainer');
+      var code = `CMD//inicialização do console.......\nadministrador:acesso permitido\nadministrador:acesso permitido\nadministrador:acesso permitido\nextração de informação: completa\ninstalação de arquivos: completa\ninstalação trojan.exe: completa\nCMD//finalizando comando\nCMD//retirada do usuário:A.G.N.E.S.`;
+
+      var index = 0;
+      codeContainer.innerHTML = '<span id="code"></span><span class="cursor"></span>';
+      var codeElement = document.getElementById('code');
+      var cursor = document.querySelector('.cursor');
+
+      function typeCode() {
+        if (index < code.length) {
+          codeElement.innerHTML += code.charAt(index);
+          index++;
+          setTimeout(typeCode, 50);
+        } 
+        else {
+          setTimeout(function() {
+            codeContainer.innerHTML = '';
+            callback();
+          }, 3000);
+        }
+      }
+
+      typeCode();
+    }
+  </script>
+
+</body>
+
+</html>
